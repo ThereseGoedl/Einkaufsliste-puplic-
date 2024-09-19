@@ -1,0 +1,57 @@
+<head>
+    <title>Einkaufsliste</title>
+    <link rel="stylesheet" href="style.css"
+    >
+</head>
+<body>
+    <h1>Einkaufsliste</h1>
+    <img src="https://cdn.icon-icons.com/icons2/2582/PNG/512/trolley_shopping_cart_market_icon_153991.png"
+     height="80px"/>
+     <div>
+        <input id="benutzerInput" type="text" placeholder="Enter your list..." />
+        <button id="enter">Hinzufügen</button> 
+    </div>
+
+    <ul></ul>
+
+    <script>
+        var enterButton = document.getElementById("enter");
+        var input = document.getElementById("benutzerInput");
+        var ul = document.querySelector("ul");
+
+        function erstellenEintrag() {
+         if (input.value.trim) {
+
+        var li = document.createElement("li"); 
+        li.appendChild(document.createTextNode(input.value));
+        ul.appendChild(li); 
+        input.value = "";
+        li.addEventListener("click", abgehaktEintrag);
+  
+        function abgehaktEintrag() {
+        li.classList.toggle("done");
+        var löschenBtn = document.createElement("button");
+        löschenBtn.appendChild(document.createTextNode("X"));
+        li.appendChild(löschenBtn);
+  
+        löschenBtn.addEventListener("click", löschenEintrag);
+  
+        function löschenEintrag() {
+        li.classList.add("delete");
+        }
+          }
+          }
+        }
+  
+        enterButton.addEventListener("click", erstellenEintrag);
+        input.addEventListener("keydown", function(event) {
+         if (event.key === "Enter") { erstellenEintrag();}
+        });
+  
+
+
+
+
+      </script>
+  </body>
+  </html>
